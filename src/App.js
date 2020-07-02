@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { Header } from './Components/Header.js';
+import { Paragraph } from './Components/Paragraph.js';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
+class App extends Component {
+
+  state = {
+    text: 'Bienvenido Juan Ospina'
+  }
+
+  cambiarTextoState = () => {
+    this.setState({ text: 'Hola Mundo' });
+  }
+
+  manejaClick = (elemento) => {
+    console.log(`${elemento} ha sido clickeado`);
+  }
+
+  render() {
+
+    const { text } = this.state;
+    const { name } = this.props;
+    return (
+      <div className="App">
+        <Header name={name} manejaClick={this.manejaClick} />
+        <Paragraph onClick={this.cambiarTextoState}>
+          {text}
+        </Paragraph>
+      </div >
+    );
+  }
+}
 export default App;
